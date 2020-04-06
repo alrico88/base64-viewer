@@ -1,28 +1,42 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+<template lang="pug">
+  #app.container-fluid.bg-smoke
+    .row
+      .col-8.text-center
+        .row.vh-100.align-items-center
+          .col(v-if="url !== ''")
+            image-result(:url="url")
+          .col(v-if="url === ''")
+            p.lead
+              | Please enter a Base64 string first
+      .col-4.bg-white.border-left
+        decoder(@text-updated="updateText")
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Decoder from './components/Decoder.vue';
+import ImageResult from './components/Image.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    HelloWorld
-  }
+    Decoder,
+    ImageResult,
+  },
+  data() {
+    return {
+      url: '',
+    };
+  },
+  methods: {
+    updateText(value) {
+      this.url = `data:image/png;base64, ${value}`;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.bg-smoke {
+  background-color: #f4f5f7;
 }
 </style>
