@@ -36,6 +36,13 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/fira-sans.min.css");
+
+body,
+html {
+  font-family: "Fira Sans" !important;
+}
+
 .bg-smoke {
   background-color: #f4f5f7;
 }
