@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex';
+import { mapState, mapMutations } from "vuex";
 
 export default {
-  name: 'Decoder',
+  name: "Decoder",
   computed: {
-    ...mapState(['text']),
+    ...mapState(["text"]),
     localText: {
       get() {
         return this.text;
@@ -26,9 +26,9 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['changeText']),
+    ...mapMutations(["changeText"]),
     clearInput() {
-      this.$store.dispatch('clearInput');
+      this.$store.dispatch("clearInput");
     },
   },
 };

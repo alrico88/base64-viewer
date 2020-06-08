@@ -16,29 +16,29 @@
 </template>
 
 <script>
-import {mapState, mapGetters} from 'vuex';
+import { mapState, mapGetters } from "vuex";
 
 export default {
-  name: 'Decoder',
+  name: "Decoder",
   computed: {
-    ...mapState(['text']),
-    ...mapGetters(['url']),
+    ...mapState(["text"]),
+    ...mapGetters(["url"]),
   },
   methods: {
     notifyClipSuccess() {
       this.$notify({
-        group: 'clipboard',
-        title: 'Success',
-        text: 'Copied to clipboard',
-        type: 'success',
+        group: "clipboard",
+        title: "Success",
+        text: "Copied to clipboard",
+        type: "success",
       });
     },
     notifyClipError(err) {
       this.$notify({
-        group: 'clipboard',
-        title: 'Error',
+        group: "clipboard",
+        title: "Error",
         text: `Error copying to clipboard ${err}`,
-        type: 'danger',
+        type: "danger",
       });
     },
   },

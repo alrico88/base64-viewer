@@ -9,20 +9,20 @@
 </template>
 
 <script>
-import {readAsDataURL} from 'promise-file-reader';
-import ImageResult from '@/components/ImageResult.vue';
-import {mapState, mapMutations, mapGetters} from 'vuex';
+import { readAsDataURL } from "promise-file-reader";
+import ImageResult from "@/components/ImageResult.vue";
+import { mapState, mapMutations, mapGetters } from "vuex";
 
 export default {
   components: {
     ImageResult,
   },
   computed: {
-    ...mapState(['text']),
-    ...mapGetters(['url']),
+    ...mapState(["text"]),
+    ...mapGetters(["url"]),
   },
   methods: {
-    ...mapMutations(['changeText']),
+    ...mapMutations(["changeText"]),
     async encode($event) {
       const droppedFile = $event.dataTransfer.files;
       if (droppedFile) {

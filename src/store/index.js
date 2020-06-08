@@ -1,17 +1,17 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    text: '',
+    text: "",
   },
   getters: {
     url(state) {
       const value = state.text;
-      const hasType = value.indexOf('base64,') !== -1;
-      const processedValue = hasType ? value.split('base64,')[1] : value;
+      const hasType = value.indexOf("base64,") !== -1;
+      const processedValue = hasType ? value.split("base64,")[1] : value;
       return `data:image/png;base64, ${processedValue}`;
     },
   },
@@ -22,7 +22,7 @@ export default new Vuex.Store({
   },
   actions: {
     clearInput(context) {
-      context.commit('changeText', '');
+      context.commit("changeText", "");
     },
   },
 });

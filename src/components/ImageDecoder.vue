@@ -8,20 +8,18 @@
 </template>
 
 <script>
-import ImageResult from './ImageResult.vue';
-import {mapGetters, mapState} from 'vuex';
+import ImageResult from "./ImageResult.vue";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   components: {
     ImageResult,
   },
   computed: {
-    ...mapState(['text']),
-    ...mapGetters(['url']),
+    ...mapState(["text"]),
+    ...mapGetters(["url"]),
   },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
