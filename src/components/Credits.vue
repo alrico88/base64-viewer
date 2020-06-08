@@ -1,7 +1,7 @@
 <template lang="pug">
   .row
     .col
-      hr.my-3
+      hr.my-2
       p.mb-2 Made by
         a.ml-1(href="http://alrico.es", target="_blank") Alberto Rico
       p Source code available on

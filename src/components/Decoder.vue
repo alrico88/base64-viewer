@@ -2,10 +2,10 @@
   .row
     .col
       form.form
-        .form-group.mb-1
+        .form-group.mb-2
           label Paste the Base64 string:
           textarea.form-control(v-model="localText", rows="10")
-        .form-group
+        .form-group.mb-0
           a(href="#", @click.prevent="clearInput", :class="{disabled: text === ''}") Clear field
 </template>
 

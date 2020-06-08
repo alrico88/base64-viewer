@@ -2,15 +2,15 @@
   #app
     .container-fluid.bg-smoke
       .row
-        .col-8.text-center
+        .col-lg-8.col-6.text-center
           router-view(name="image")
-        .col-4.bg-white.border-left
+        .col-lg-4.col-6.bg-white.border-left
           .row
             .col.pt-3
               h2 Base64 viewer
-              nav.nav.nav-pills.mb-2
-                router-link.nav-item.nav-link(exact-active-class="active", to="/") View
-                router-link.nav-item.nav-link(exact-active-class="active", to="/encode") Encode
+              nav.nav.nav-tabs.mb-2
+                router-link.nav-item.nav-link(exact-active-class="active", to="/") View image
+                router-link.nav-item.nav-link(exact-active-class="active", to="/encode") Encode image
           router-view(name="sidebar")
           credits
     notifications(group="clipboard")
