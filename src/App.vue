@@ -1,36 +1,27 @@
 <template lang="pug">
-  #app.container-fluid.bg-smoke
-    .row
-      .col-8.text-center
-        .row.vh-100.align-items-center
-          .col(v-if="url !== ''")
-            image-result(:url="url")
-          .col(v-if="url === ''")
-            p.lead
-              | Please enter a Base64 string first
-      .col-4.bg-white.border-left
-        decoder(@text-updated="updateText")
+  #app
+    .container-fluid.bg-smoke
+      .row
+        .col-8.text-center
+          router-view(name="image")
+        .col-4.bg-white.border-left
+          .row
+            .col.pt-3
+              h2 Base64 viewer
+              nav.nav.nav-pills.mb-2
+                router-link.nav-item.nav-link(exact-active-class="active", to="/") View
+                router-link.nav-item.nav-link(exact-active-class="active", to="/encode") Encode
+          router-view(name="sidebar")
+          credits
+    notifications(group="clipboard")
+    router-view
 </template>
 
 <script>
-import Decoder from './components/Decoder.vue';
-import ImageResult from './components/Image.vue';
-
+import Credits from './components/Credits.vue';
 export default {
-  name: 'App',
   components: {
-    Decoder,
-    ImageResult,
-  },
-  data() {
-    return {
-      url: '',
-    };
-  },
-  methods: {
-    updateText(value) {
-      this.url = `data:image/png;base64, ${value}`;
-    },
+    Credits,
   },
 };
 </script>

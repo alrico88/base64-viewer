@@ -1,40 +1,34 @@
 <template lang="pug">
   .row
     .col
-      .row
-        .col.pt-3
-          h2 Base64 viewer
-      .row
-        .col
-          form.form
-            .form-group.mb-0
-              label Enter the Base64 string:
-              textarea.form-control(v-model="text", rows="10")
-      .row
-        .col
-          hr.my-3
-          p.mb-2 Made by
-            a.ml-1(href="http://alrico.es", target="_blank") Alberto Rico
-          p Source code available on
-            a.ml-1(href="https://github.com/alrico88/base64-viewer", target="_blank")
-              i.fa.fa-github-square
-              |  Github
-
+      form.form
+        .form-group.mb-1
+          label Paste the Base64 string:
+          textarea.form-control(v-model="localText", rows="10")
+        .form-group
+          a(href="#", @click.prevent="clearInput", :class="{disabled: text === ''}") Clear field
 </template>
 
 <script>
+import {mapState, mapMutations} from 'vuex';
+
 export default {
   name: 'Decoder',
-  data() {
-    return {
-      text: '',
-    };
+  computed: {
+    ...mapState(['text']),
+    localText: {
+      get() {
+        return this.text;
+      },
+      set(value) {
+        this.changeText(value);
+      },
+    },
   },
-  watch: {
-    text(value) {
-      const hasType = value.indexOf('base64,') !== -1;
-      const valueToSend = hasType ? value.split('base64,')[1] : value;
-      this.$emit('text-updated', valueToSend);
+  methods: {
+    ...mapMutations(['changeText']),
+    clearInput() {
+      this.$store.dispatch('clearInput');
     },
   },
 };
