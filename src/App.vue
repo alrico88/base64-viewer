@@ -31,7 +31,7 @@ export default {
 
 body,
 html {
-  font-family: "Fira Sans" !important;
+  font-family: "Fira Sans", sans-serif !important;
 }
 
 .bg-smoke {
