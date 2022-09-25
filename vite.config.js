@@ -6,7 +6,14 @@ import Sitemap from 'vite-plugin-sitemap';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), webfontDownload(), Sitemap()],
+  plugins: [
+    vue(),
+    webfontDownload(),
+    Sitemap({
+      hostname: 'https://base64-viewer.onrender.com',
+      dynamicRoutes: ['encode'],
+    }),
+  ],
   resolve: {
     alias: [
       {
