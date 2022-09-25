@@ -1,42 +1,30 @@
 /* eslint-disable no-inline-comments */
 
-import Vue from "vue";
-import VueRouter from "vue-router";
-import ImageDecoder from "../components/ImageDecoder.vue";
-import Decoder from "../components/Decoder.vue";
-
-Vue.use(VueRouter);
+import ImageDecoder from '../components/ImageDecoder.vue';
+import TheDecoder from '../components/TheDecoder.vue';
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     components: {
       image: ImageDecoder,
-      sidebar: Decoder,
+      sidebar: TheDecoder,
     },
   },
   {
-    path: "/encode",
-    name: "Encode",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: '/encode',
+    name: 'Encode',
     components: {
-      image: () =>
-        import(
-          /* webpackChunkName: "imagedrop" */ "../components/ImageDrop.vue"
-        ),
-      sidebar: () =>
-        import(/* webpackChunkName: "encoder" */ "../components/Encoder.vue"),
+      image: () => import('../components/ImageDrop.vue'),
+      sidebar: () => import('../components/TheEncoder.vue'),
     },
   },
 ];
 
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
+export default createRouter({
+  history: createWebHistory(),
+  base: import.meta.BASE_URL,
   routes,
 });
-
-export default router;

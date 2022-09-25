@@ -1,20 +1,14 @@
-import Vue from "vue";
-import App from "./App.vue";
-import Notifications from "vue-notification";
-import VueClipboard from "vue-clipboard2";
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import App from './App.vue';
+import './assets/main.scss';
 
-Vue.config.productionTip = false;
+const pinia = createPinia();
 
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import router from "./router";
-import store from "./store";
+import router from './router';
 
-Vue.use(Notifications);
-Vue.use(VueClipboard);
+const app = createApp(App);
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+app.use(pinia);
+app.use(router);
+app.mount('#app');

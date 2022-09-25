@@ -1,23 +1,16 @@
 <template lang="pug">
-  .row.vh-100.align-items-center
-    .col(v-if="text !== ''")
-      image-result(:url="url")
-    .col(v-if="text === ''")
-      p.lead
-        | Please enter a Base64 string first
+.row.vh-100.align-items-center
+  .col(v-if="text !== ''")
+    image-result(:url="url")
+  .col(v-if="text === ''")
+    p.lead Please enter a Base64 string first
 </template>
 
-<script>
+<script setup>
+import { toRefs } from "vue";
+import { useStore } from "../store";
 import ImageResult from "./ImageResult.vue";
-import { mapGetters, mapState } from "vuex";
+const store = useStore();
 
-export default {
-  components: {
-    ImageResult,
-  },
-  computed: {
-    ...mapState(["text"]),
-    ...mapGetters(["url"]),
-  },
-};
+const { text, url } = toRefs(store);
 </script>

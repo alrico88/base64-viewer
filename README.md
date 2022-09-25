@@ -1,24 +1,20 @@
 # base64-viewer
 
+Web app to encode / decode an image into its Base64 representation.
+
+Built using Vue 3, Pinia and Vite.
+
 ## Project setup
 ```
-yarn install
+pnpm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+pnpm dev
 ```
 
 ### Compiles and minifies for production
 ```
-yarn build
+pnpm build
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
