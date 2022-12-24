@@ -2,19 +2,19 @@
 
 Web app to encode / decode an image into its Base64 representation.
 
-Built using Vue 3, Pinia and Vite.
+Built using Vue 3, Nuxt and Typescript.
 
 ## Project setup
 ```
-pnpm install
+pnpm install --shamefully-hoist
 ```
 
 ### Compiles and hot-reloads for development
 ```
-pnpm dev
+pnpm run dev
 ```
 
 ### Compiles and minifies for production
 ```
-pnpm build
+pnpm run build
 ```

@@ -6,11 +6,9 @@
     p.lead Please enter a Base64 string first
 </template>
 
-<script setup>
-import { toRefs } from "vue";
-import { useStore } from "../store";
-import ImageResult from "./ImageResult.vue";
-const store = useStore();
-
-const { text, url } = toRefs(store);
+<script setup lang="ts">
+const props = defineProps<{
+  text: string;
+  url: string;
+}>();
 </script>

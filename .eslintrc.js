@@ -1,12 +1,14 @@
+/* eslint-env node */
+require("@rushstack/eslint-patch/modern-module-resolution");
+
 module.exports = {
   extends: [
-    // add more generic rulesets here, such as:
-    // 'eslint:recommended',
-    'plugin:vue/vue3-recommended',
-    // 'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
+    "plugin:vue/vue3-essential",
+    "@vue/eslint-config-typescript/recommended",
+    "@vue/eslint-config-prettier",
   ],
   rules: {
-    // override/add rules settings here, such as:
-    // 'vue/no-unused-vars': 'error'
+    "@typescript-eslint/no-unused-vars": "off",
+    "vue/multi-word-component-names": "off",
   },
 };

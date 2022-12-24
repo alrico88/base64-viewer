@@ -1,30 +1,30 @@
 <template lang="pug">
 .row.vh-100.align-items-center.text-center(@drop.prevent="encode", @dragover.prevent)
-  .col(v-if="text !== ''")
+  .col(v-if="url !== ''")
     image-result(:url="url")
-  .col(v-if="text === ''")
+  .col(v-if="url === ''")
     .row.align-items-center.justify-content-center.h-100.w-100
       .col-6
         p.lead.mb-0.p-5.border-dash.rounded Drag an image here to encode
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { readAsDataURL } from "promise-file-reader";
-import ImageResult from "@/components/ImageResult.vue";
-import { useStore } from "../store";
-import { toRefs } from "vue";
 
-const store = useStore();
-const { text, url } = toRefs(store);
+const props = defineProps<{
+  url: string;
+}>();
 
-async function encode(event) {
-  const droppedFile = event.dataTransfer.files;
+const syncedUrl = useVModel(props, "url");
+
+async function encode(event: DragEvent) {
+  const droppedFile = event.dataTransfer?.files;
 
   if (droppedFile) {
     const [file] = [...droppedFile];
     const asDataURL = await readAsDataURL(file);
 
-    text.value = asDataURL;
+    syncedUrl.value = asDataURL;
   }
 }
 </script>
