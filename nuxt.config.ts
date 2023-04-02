@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  extends: ["nuxt-umami"],
   app: {
     head: {
       title: "Base 64 Image Viewer",
@@ -16,21 +17,30 @@ export default defineNuxtConfig({
   },
   css: ["@/assets/main.scss"],
   modules: [
+    "@nuxtjs/google-fonts",
     "nuxt-icon",
     "@nuxtjs/fontaine",
     "@vueuse/nuxt",
     "nuxt-simple-sitemap",
   ],
-  fontMetrics: {
-    fonts: ["Fira Sans"],
+  googleFonts: {
+    families: {
+      "Fira Sans": [400, 600, 800],
+    },
   },
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: ["/", "/encode"],
+  routeRules: {
+    "/**": {
+      static: true,
     },
   },
   sitemap: {
     hostname: "https://base64-viewer.onrender.com",
+  },
+  appConfig: {
+    umami: {
+      host: "https://stats.alrico.es",
+      id: "aeca55f8-1a43-4ecf-8d02-f8b52e4c0694",
+      ignoreLocalhost: true,
+    },
   },
 });

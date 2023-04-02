@@ -1,15 +1,17 @@
 <template lang="pug">
-.row.vh-100.align-items-center.text-center(@drop.prevent="encode", @dragover.prevent)
-  .col(v-if="url !== ''")
-    image-result(:url="url")
-  .col(v-if="url === ''")
-    .row.align-items-center.justify-content-center.h-100.w-100
-      .col-6
-        p.lead.mb-0.p-5.border-dash.rounded Drag an image here to encode
+.d-flex.align-items-center.p-3.h-100.w-100(ref="dropZoneRef")
+  template(v-if="imgIsLoaded")
+    image-result.mx-auto(:url="url")
+  template(v-if="!imgIsLoaded")
+    .border-dash.h-100.w-100
+      .row.justify-content-center.h-100.align-items-center
+        .col-md-6
+          .lead.fw-bold {{ isOverDropZone ? 'Drop the image' : 'Drag an image here to encode' }}
 </template>
 
 <script setup lang="ts">
 import { readAsDataURL } from "promise-file-reader";
+import { useDropZone } from "@vueuse/core";
 
 const props = defineProps<{
   url: string;
@@ -17,9 +19,11 @@ const props = defineProps<{
 
 const syncedUrl = useVModel(props, "url");
 
-async function encode(event: DragEvent) {
-  const droppedFile = event.dataTransfer?.files;
+const imgIsLoaded = computed(() => syncedUrl.value !== "");
 
+const dropZoneRef = ref<HTMLDivElement>();
+
+async function onDrop(droppedFile: File[] | null) {
   if (droppedFile) {
     const [file] = [...droppedFile];
     const asDataURL = await readAsDataURL(file);
@@ -27,6 +31,8 @@ async function encode(event: DragEvent) {
     syncedUrl.value = asDataURL;
   }
 }
+
+const { isOverDropZone } = useDropZone(dropZoneRef, onDrop);
 </script>
 
 <style lang="scss" scoped>
