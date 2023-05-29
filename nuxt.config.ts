@@ -39,7 +39,7 @@ export default defineNuxtConfig({
   appConfig: {
     umami: {
       host: "https://stats.alrico.es",
-      id: "aeca55f8-1a43-4ecf-8d02-f8b52e4c0694",
+      id: "",
       ignoreLocalhost: true,
     },
   },
