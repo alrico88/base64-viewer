@@ -10,7 +10,7 @@ root-layout
             .form-text(v-if="needsTruncate") Text too long. Showing first 500 characters.
             button.btn.btn-sm.btn-primary.mt-2(
               type="button",
-              :class="{'disabled': url === ''}"
+              :disabled="btnDisabled",
               @click="() => copy(url)"
             ) #[icon(name="bi:clipboard")] {{ copied ? 'Copied' : 'Copy to clipboard' }}
   template(#image)
@@ -40,8 +40,10 @@ const needsTruncate = computed(() => url.value.length > 500);
 const truncatedText = computed(() =>
   truncate(url.value, {
     length: 500,
-  })
+  }),
 );
 
 const { copy, copied } = useClipboard();
+
+const btnDisabled = computed(() => url.value === "" || copied.value);
 </script>
