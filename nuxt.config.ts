@@ -33,8 +33,8 @@ export default defineNuxtConfig({
       static: true,
     },
   },
-  sitemap: {
-    hostname: "https://base64-viewer.onrender.com",
+  site: {
+    url: "https://base64-viewer.onrender.com",
   },
   appConfig: {
     umami: {
