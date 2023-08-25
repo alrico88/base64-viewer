@@ -5,10 +5,20 @@ root-layout
       .col
         form.form
           .form-group.mb-2
-            label Paste the Base64 string:
-            textarea.form-control(v-model="text", rows="10")
+            label(for="image-string") Paste the Base64 string:
+            textarea.form-control(v-model="text", id="image-string", rows="10")
           .form-group
-            button.btn.btn-link.p-0(@click="clearInput", :class="{disabled: text === ''}") Clear field
+            .hstack.gap-2
+              button.btn.btn-sm.btn-primary(
+                @click="download", 
+                type="button", 
+                :disabled="btnDisabled"
+              ) #[icon(name="bi:download")] Download image
+              button.btn.btn-sm.btn-light(
+                @click="clearInput", 
+                type="button", 
+                :disabled="btnDisabled"
+              ) #[icon(name="material-symbols:clear-all")] Clear field
   template(#image)
     image-decoder(:text="text", :url="url")
 </template>
@@ -25,6 +35,7 @@ useHead({
 });
 
 const text = ref("");
+const btnDisabled = computed(() => text.value === "");
 
 const url = computed(() => {
   const hasType = text.value.indexOf("base64,") !== -1;
@@ -35,5 +46,30 @@ const url = computed(() => {
 
 function clearInput() {
   text.value = "";
+}
+
+async function download() {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx) {
+    return;
+  }
+
+  const img = await useImage(url.value);
+
+  ctx.canvas.width = img.width;
+  ctx.canvas.height = img.height;
+  ctx.drawImage(img, 0, 0);
+
+  canvas.toBlob((blob) => {
+    if (!blob) {
+      console.error("Error converting image to Blob");
+
+      return;
+    }
+
+    useDownload(blob, "base64decoded.png");
+  });
 }
 </script>
