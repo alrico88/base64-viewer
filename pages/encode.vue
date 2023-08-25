@@ -4,15 +4,21 @@ root-layout
     .row
       .col
         form.form
-          .form-group.mb-0
+          .form-group.mb-2
             label.form-label The Base64 for the image is:
             textarea.form-control(v-model="truncatedText", rows="10", readonly, disabled)
             .form-text(v-if="needsTruncate") Text too long. Showing first 500 characters.
-            button.btn.btn-sm.btn-primary.mt-2(
+          .hstack.gap-2
+            button.btn.btn-sm.btn-primary(
               type="button",
-              :disabled="btnDisabled",
+              :disabled="btnDisabled || copied",
               @click="() => copy(url)"
             ) #[icon(name="bi:clipboard")] {{ copied ? 'Copied' : 'Copy to clipboard' }}
+            button.btn.btn-sm.btn-light(
+              type="button",
+              :disabled="btnDisabled",
+              @click="download"
+            ) #[icon(name="bi:download")] Download text
   template(#image)
     image-drop(v-model:url="url")
 </template>
@@ -45,5 +51,9 @@ const truncatedText = computed(() =>
 
 const { copy, copied } = useClipboard();
 
-const btnDisabled = computed(() => url.value === "" || copied.value);
+const btnDisabled = computed(() => url.value === "");
+
+function download() {
+  useDownload(new Blob([url.value]), "base64encoded.txt");
+}
 </script>
