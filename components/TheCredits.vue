@@ -9,7 +9,7 @@ footer.pb-2
 </template>
 
 <script setup lang="ts">
-const siteLink = "http://alrico.es";
+const siteLink = "https://alrico.es";
 
 const repoLink = "https://github.com/alrico88/base64-viewer";
 
