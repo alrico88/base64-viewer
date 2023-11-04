@@ -9,3 +9,7 @@ $font-family-base: 'Fira Sans';
 .overflow-y-auto {
   overflow-y: auto;
 }
+
+.cm-editor {
+    @extend .border;
+}

@@ -4,19 +4,25 @@ root-layout
     .row
       .col
         form.form
-          .form-group.mb-2
-            label(for="image-string") Paste the Base64 string:
-            textarea.form-control(v-model="text", id="image-string", rows="10")
+          fieldset.mb-2
+            label.form-label(for="image-string") Paste the Base64 string:
+            div(:style="inputStyle")
+              codemirror(
+                id="image-string"
+                v-model="text"
+                :extensions="[EditorView.lineWrapping]"
+                :style="inputStyle"
+              )
           .form-group
             .hstack.gap-2
               button.btn.btn-sm.btn-primary(
-                @click="download", 
-                type="button", 
+                @click="download",
+                type="button",
                 :disabled="btnDisabled"
               ) #[icon(name="bi:download")] Download image
               button.btn.btn-sm.btn-light(
-                @click="clearInput", 
-                type="button", 
+                @click="clearInput",
+                type="button",
                 :disabled="btnDisabled"
               ) #[icon(name="material-symbols:clear-all")] Clear field
   template(#image)
@@ -24,14 +30,12 @@ root-layout
 </template>
 
 <script setup lang="ts">
-useHead({
+import { Codemirror } from 'vue-codemirror';
+import { EditorView } from 'codemirror';
+
+useSeoMeta({
   title: "Base 64 Image Viewer",
-  meta: [
-    {
-      name: "description",
-      content: "Online Base64 image viewer",
-    },
-  ],
+  description: "Online Base64 image viewer",
 });
 
 const text = ref("");
@@ -72,4 +76,6 @@ async function download() {
     useDownload(blob, "base64decoded.png");
   });
 }
+
+const inputStyle = useInputStyle();
 </script>
