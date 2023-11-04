@@ -30,7 +30,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^9.17.0",
-    "nuxt": "^3.7.0",
+    "nuxt": "^3.8.0",
     "nuxt-icon": "^0.5.0",
     "nuxt-simple-sitemap": "^3.2.5",
     "prettier": "^3.0.2",

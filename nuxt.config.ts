@@ -41,6 +41,7 @@ export default defineNuxtConfig({
       host: "https://stats.alrico.es",
       id: "",
       ignoreLocalhost: true,
+      version: 2,
     },
   },
 });
