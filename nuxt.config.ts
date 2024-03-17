@@ -16,17 +16,15 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/main.scss"],
-  modules: [
-    "@nuxtjs/google-fonts",
-    "nuxt-icon",
-    "@nuxtjs/fontaine",
-    "@vueuse/nuxt",
-    "nuxt-simple-sitemap",
-  ],
-  googleFonts: {
-    families: {
-      "Fira Sans": [400, 600, 800],
-    },
+  modules: ["@nuxt/fonts", "nuxt-icon", "@vueuse/nuxt", "@nuxtjs/sitemap"],
+  fonts: {
+    families: [
+      {
+        provider: "google",
+        name: "Fira Sans",
+        weights: [400, 600, 800],
+      },
+    ],
   },
   routeRules: {
     "/**": {
