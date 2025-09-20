@@ -9,7 +9,8 @@
           aria-hidden,
           type="file",
           ref="inputRef",
-          @change="onFileChange"
+          @change="onFileChange",
+          accept="image/*"
         )
         .text-lg.font-bold {{ placeholderText }}
 </template>
@@ -31,30 +32,34 @@ async function onDrop(droppedFile: File[] | null) {
   if (is.nonEmptyArray(droppedFile)) {
     const [file] = droppedFile;
 
+    console.log(file);
+
     url.value = await readAsDataURL(file);
   }
 }
 
 const { isOverDropZone } = useDropZone(dropZoneRef, onDrop);
 
-const inputRef = templateRef("inputRef");
+const inputRef = ref<HTMLInputElement>();
 
 function openFileDialog() {
-  inputRef.value.click();
+  inputRef.value?.click();
 }
 
 async function onFileChange(event: Event) {
   const target = event.target as HTMLInputElement;
   const files = target.files;
 
-  if (is.nonEmptyArray(files)) {
-    await onDrop(Array.from(files) as File[]);
+  const filesArray = Array.from(files as FileList);
+
+  if (is.nonEmptyArray(filesArray)) {
+    await onDrop(filesArray);
     target.value = "";
   }
 }
 
 const placeholderText = computed(() => {
-  return isOverDropZone
+  return isOverDropZone.value
     ? "Drop the image"
     : "Drag an image here to encode or click here to load a file";
 });
