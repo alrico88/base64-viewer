@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .cm-editor {
+    @apply textarea p-0 w-full;
+  }
+}
+
+.icon {
+  vertical-align: middle;
+  transform: translateY(-5%);
+}
+

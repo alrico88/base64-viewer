@@ -1,11 +1,10 @@
 <template lang="pug">
-.d-flex.align-items-center.p-3.h-100.w-100
+.flex.items-center.p-3.h-full.w-full
   template(v-if="imgIsLoaded")
     image-result.mx-auto(:url="url")
   template(v-else)
-    .row.h-100.w-100.align-items-center.text-center
-      .col
-        .lead.fw-bold Please enter a Base64 string first
+    .flex.h-full.w-full.items-center.justify-center
+      .font-bold.text-lg Please enter a Base64 string first
 </template>
 
 <script setup lang="ts">

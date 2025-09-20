@@ -1,5 +1,5 @@
 <template lang="pug">
-img.shadow(:src="url", alt="Resulting image")
+img.shadow-lg(:src="url", alt="Resulting image")
 </template>
 
 <script setup lang="ts">
