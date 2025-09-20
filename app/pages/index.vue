@@ -1,37 +1,29 @@
 <template lang="pug">
 root-layout
   template(#sidebar)
-    .row
-      .col
-        form.form
-          fieldset.mb-2
-            label.form-label(for="image-string") Paste the Base64 string:
-            div(:style="inputStyle")
-              codemirror(
-                id="image-string"
-                v-model="text"
-                :extensions="[EditorView.lineWrapping]"
-                :style="inputStyle"
-              )
-          .form-group
-            .hstack.gap-2
-              button.btn.btn-sm.btn-primary(
-                @click="download",
-                type="button",
-                :disabled="btnDisabled"
-              ) #[icon(name="bi:download")] Download image
-              button.btn.btn-sm.btn-light(
-                @click="clearInput",
-                type="button",
-                :disabled="btnDisabled"
-              ) #[icon(name="material-symbols:clear-all")] Clear field
+    form.form
+      fieldset.fieldset.mb-2
+        label.text-base(for="image-string") Paste the Base64 string:
+        div(:style="inputStyle")
+          codemirror#image-string(
+            v-model="text",
+            :extensions="[EditorView.lineWrapping]",
+            :style="inputStyle"
+          )
+      .flex.flex-wrap.gap-2
+        button.btn.btn-primary(
+          @click="download",
+          type="button",
+          :disabled="btnDisabled"
+        ) #[icon(name="bi:download")] Download image
+        button.btn(@click="clearInput", type="button", :disabled="btnDisabled") #[icon(name="material-symbols:clear-all")] Clear field
   template(#image)
     image-decoder(:text="text", :url="url")
 </template>
 
 <script setup lang="ts">
-import { Codemirror } from 'vue-codemirror';
-import { EditorView } from 'codemirror';
+import { Codemirror } from "vue-codemirror";
+import { EditorView } from "codemirror";
 
 useSeoMeta({
   title: "Base 64 Image Viewer",
