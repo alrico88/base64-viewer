@@ -1,0 +1,21 @@
+# Exported from Render on 2025-09-27T11:23:09Z
+version: "1"
+services:
+- type: web
+  name: base64-viewer
+  runtime: node
+  repo: https://github.com/alrico88/base64-viewer
+  envVars:
+  - key: NODE_VERSION
+    sync: false
+  - key: NITRO_PRESET
+    sync: false
+  - key: NUXT_PUBLIC_UMAMI_ID
+    sync: false
+  - key: NUXT_PUBLIC_UMAMI_HOST
+    sync: false
+  buildCommand: pnpm i --shamefully-hoist && pnpm build
+  startCommand: node .output/server/index.mjs
+  autoDeployTrigger: commit
+  previews:
+    generation: automatic
