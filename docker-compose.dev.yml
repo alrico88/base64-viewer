@@ -1,0 +1,10 @@
+services:
+  base64:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    container_name: base64
+    image: ghcr.io/alrico88/base64-viewer:latest
+    restart: "always"
+    ports:
+      - "8080:3000"

@@ -7,10 +7,6 @@ export default defineNuxtConfig({
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         { name: "msapplication-TileColor", content: "#2d89ef" },
         { name: "theme-color", content: "#ffffff" },
-        {
-          name: "google-site-verification",
-          content: "UZOcaXnekxNx3602Y3bTdmQ76izGiFgKdkMnByPC_PM",
-        },
       ],
     },
   },
@@ -33,7 +29,7 @@ export default defineNuxtConfig({
     ],
   },
   site: {
-    url: "https://base64-viewer.onrender.com",
+    url: "https://base64-viewer.alrico.dev",
   },
   umami: {
     host: "https://stats.alrico.es",
@@ -42,5 +38,8 @@ export default defineNuxtConfig({
   },
   icon: {
     class: "icon",
+  },
+  nitro: {
+    preset: "node-server",
   },
 });
