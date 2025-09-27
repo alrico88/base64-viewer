@@ -32,11 +32,6 @@ export default defineNuxtConfig({
       },
     ],
   },
-  routeRules: {
-    "/**": {
-      static: true,
-    },
-  },
   site: {
     url: "https://base64-viewer.onrender.com",
   },
